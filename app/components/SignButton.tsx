@@ -1,6 +1,6 @@
 function SignButton() {
   return (
-    <button className="bg-purple-800 text-white px-8 py-3 rounded-full text-lg hover:bg-purple-900 transition-colors flex items-center gap-2">
+    <button className="bg-[#671D57] text-white px-8 py-3 rounded-full text-lg hover:bg-[#320d2a] transition-colors flex items-center gap-2">
       شریک بی‌مرز شوید
       <svg
         className="w-5 h-5"
