@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 function BlogCard() {
   return (
-    <Card className="w-[600px] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg cursor-pointer">
+    <Card className="w-[400px] md:w-[600px] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg cursor-pointer">
       <CardHeader className="p-0 mb-5 h-[300px] shadow">
         <Image
           src="/book-card-mock.png"
