@@ -1,13 +1,27 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
 import Image from "next/image";
 import Link from "next/link";
-function BlogCard() {
+import { useRouter } from "next/navigation";
+import { useViewportSize } from "../hooks/useViewportSize";
+
+function BlogCard({ id }: { id: number }) {
+  const router = useRouter();
+  const viewportSize = useViewportSize();
   return (
-    <Card className="w-[400px] md:w-[600px] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg cursor-pointer">
-      <CardHeader className="p-0 mb-5 h-[300px] shadow">
+    <Card
+      className={`w-[400px] md:w-[400px] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg cursor-pointer ${
+        viewportSize === "sm" ? "w-[350px]" : ""
+      }`}
+      onClick={() => router.push(`/blog/${id}`)}
+    >
+      <CardHeader
+        className={`p-0 mb-5 ${
+          viewportSize === "sm" ? "h-[200px]" : "h-[300px]"
+        } shadow`}
+      >
         <Image
           src="/book-card-mock.png"
           alt="Blog Image"

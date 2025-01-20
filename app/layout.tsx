@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
-      <body
-        className={`${vazirmatn.className} antialiased bg-gradient-to-bl from-[#ADDE65] to-[#63EDC8]`}
-      >
+      <body className={`${vazirmatn.className} antialiased`}>
         <Navbar />
         {children}
       </body>
