@@ -9,7 +9,7 @@ function IntroAsset() {
   return (
     <div className="flex flex-col items-center justify-center md:w-1/2 my-10 md:my-0">
       <Image
-        src="/intro-asset.png"
+        src="/intro-asset.jpg"
         alt="Intro Asset"
         width={viewportSize === "sm" ? 300 : 450}
         height={viewportSize === "sm" ? 200 : 300}
