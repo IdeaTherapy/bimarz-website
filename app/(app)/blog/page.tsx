@@ -14,9 +14,9 @@ export default function Blog() {
   };
 
   // Calculate pagination range
-  const startIndex = (currentPage - 1) * itemsPerPage;
 
-  // Generate array of blog cards based on pagination
+  // mock
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const blogCards = Array.from(
     { length: Math.min(itemsPerPage, totalItems - startIndex) },
     (_, index) => <BlogCard key={startIndex + index} id={startIndex + index} />
