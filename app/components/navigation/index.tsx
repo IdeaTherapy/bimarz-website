@@ -11,8 +11,8 @@ import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 
 function Navbar() {
-  const [opacity, setOpacity] = useState(0.4);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [opacity, setOpacity] = useState<number>(0.4);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,9 +58,9 @@ function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header role="banner">
+    <header role="banner" className="fixed top-0 left-0 right-0 z-50">
       <nav
-        className="sticky top-0 z-50 h-[var(--navbar-height)] overflow-visible w-full"
+        className="w-full h-[var(--navbar-height)] overflow-visible"
         style={{
           backgroundColor: `rgba(255, 255, 255, ${opacity})`,
           backdropFilter: "blur(5px)",
