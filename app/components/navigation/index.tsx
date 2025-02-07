@@ -1,12 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  InstagramIcon,
-  FacebookIcon,
-  LinkedInIcon,
-  TelegramIcon,
-} from "./Icons";
+import { TelegramIcon } from "./Icons";
+import { Instagram } from "lucide-react";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 
@@ -105,7 +101,7 @@ function Navbar() {
 
             {/* Left Side - Social Icons */}
             <div
-              className="flex items-center gap-[5px]"
+              className="flex items-center gap-[15px]"
               role="navigation"
               aria-label="Social media links"
             >
@@ -114,21 +110,7 @@ function Navbar() {
                 className="social-icon"
                 aria-label="Instagram بی‌مرز"
               >
-                <InstagramIcon className="h-5 w-5" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#"
-                className="social-icon"
-                aria-label="Facebook بی‌مرز"
-              >
-                <FacebookIcon className="h-5 w-5" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#"
-                className="social-icon"
-                aria-label="LinkedIn بی‌مرز"
-              >
-                <LinkedInIcon className="h-5 w-5" aria-hidden="true" />
+                <Instagram className="h-5 w-5" aria-hidden="true" />
               </Link>
               <Link
                 href="#"

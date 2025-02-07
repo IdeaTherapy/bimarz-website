@@ -14,7 +14,7 @@ const NavLinks: FC<NavLinksProps> = ({
 }) => {
   const linkClass = isMobile
     ? "text-[#671D57] text-2xl hover:opacity-80 transition-opacity"
-    : "nav-link";
+    : "nav-link relative text-[#671D57] hover:text-[#8B2676] transition-colors duration-200 after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#671D57] after:bottom-[-2px] after:left-0 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-right";
 
   return (
     <nav
@@ -31,7 +31,7 @@ const NavLinks: FC<NavLinksProps> = ({
       >
         خانه
       </Link>
-      <Link
+      {/* <Link
         href="/about"
         className={linkClass}
         onClick={onLinkClick}
@@ -39,7 +39,7 @@ const NavLinks: FC<NavLinksProps> = ({
         aria-label="درباره بی‌مرز"
       >
         درباره ما
-      </Link>
+      </Link> */}
       <Link
         href="/projects"
         className={linkClass}
