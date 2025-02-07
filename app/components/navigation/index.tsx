@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TelegramIcon } from "./Icons";
-import { Instagram } from "lucide-react";
+import { Instagram, Send } from "lucide-react";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 
@@ -117,7 +116,7 @@ function Navbar() {
                 className="social-icon"
                 aria-label="Telegram بی‌مرز"
               >
-                <TelegramIcon className="h-5 w-5" aria-hidden="true" />
+                <Send className="h-5 w-5" aria-hidden="true" />
               </Link>
             </div>
 
