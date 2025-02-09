@@ -41,7 +41,7 @@ const NavLinks: FC<NavLinksProps> = ({
         درباره ما
       </Link> */}
       <Link
-        href="/projects"
+        href="#projects"
         className={linkClass}
         onClick={onLinkClick}
         role="menuitem"
@@ -50,7 +50,7 @@ const NavLinks: FC<NavLinksProps> = ({
         پروژه‌ها
       </Link>
       <Link
-        href="/reports"
+        href="/blog"
         className={linkClass}
         onClick={onLinkClick}
         role="menuitem"
