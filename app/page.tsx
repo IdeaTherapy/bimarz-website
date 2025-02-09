@@ -1,10 +1,11 @@
 import Landing from "./components/Landing";
 import BlogSection from "./components/BlogSection";
-
+import FeaturedProjects from "./components/FeaturedProjects";
 export default function Home() {
   return (
-    <div className="bg-gradient-to-bl from-[#ADDE65] to-[#63EDC8]">
+    <div>
       <Landing />
+      <FeaturedProjects />
       <BlogSection />
     </div>
   );

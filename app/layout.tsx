@@ -26,6 +26,7 @@ export default function RootLayout({
       <body className={`${vazirmatn.className} antialiased`}>
         <Navbar />
         <main>{children}</main>
+        <hr />
         <Footer />
       </body>
     </html>
