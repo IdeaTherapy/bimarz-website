@@ -26,7 +26,7 @@ const FeaturedProjects = () => {
   ];
 
   return (
-    <section className="mt-32 md:mt-0 py-16 px-4 bg-gray-50">
+    <section className="mt-32 md:mt-0 py-16 px-4 bg-gray-50" id="projects">
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-12">
           پروژه‌های منتخب

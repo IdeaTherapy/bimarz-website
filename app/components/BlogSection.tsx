@@ -2,6 +2,8 @@
 
 import BlogCard from "./BlogCard";
 import { useViewportSize } from "../hooks/useViewportSize";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 function BlogSection() {
   const viewportSize = useViewportSize();
   return (
@@ -21,6 +23,13 @@ function BlogSection() {
           <BlogCard id={6} />
         </>
       )}
+      <div className="flex justify-center w-full my-10">
+        <Link href="/blog">
+          <Button className="bg-[#671D57] text-white px-6 py-7 rounded-full hover:bg-[#320d2a] transition-colors text-2xl">
+            مشاهده همه گزارش‌ها
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
