@@ -13,6 +13,7 @@ function IntroAsset() {
         alt="Intro Asset"
         width={viewportSize === "sm" ? 300 : 450}
         height={viewportSize === "sm" ? 200 : 300}
+        className="shadow-lg rounded-xl"
       />
       <div className="block md:hidden my-10">
         <SignButton />
