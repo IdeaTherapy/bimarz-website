@@ -45,9 +45,9 @@ const NavLinks: FC<NavLinksProps> = ({
         className={linkClass}
         onClick={onLinkClick}
         role="menuitem"
-        aria-label="پروژه‌های بی‌مرز"
+        aria-label="پویش‌های بی‌مرز"
       >
-        پروژه‌ها
+        پویش‌ها
       </Link>
       <Link
         href="/blog"
@@ -57,6 +57,15 @@ const NavLinks: FC<NavLinksProps> = ({
         aria-label="گزارش‌های بی‌مرز"
       >
         گزارش‌ها
+      </Link>
+      <Link
+        href="/#contact"
+        className={linkClass}
+        onClick={onLinkClick}
+        role="menuitem"
+        aria-label="ارتباط با ما"
+      >
+        ارتباط با ما
       </Link>
     </nav>
   );

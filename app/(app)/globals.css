@@ -115,6 +115,9 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings:
+      "ss01" 1,
+      "tnum" 1;
   }
   h1,
   h2,
@@ -124,4 +127,11 @@ body {
   h6 {
     @apply text-[var(--heading)];
   }
+}
+
+/* Enable Persian numbers globally */
+.persian-numbers {
+  -moz-font-feature-settings: "ss01";
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
 }

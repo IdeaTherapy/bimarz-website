@@ -4,7 +4,7 @@ import SocialLinks from "./SocialLinks";
 
 const Footer: FC = () => {
   return (
-    <footer className="py-8 mt-10 bg-[var(--background)]">
+    <footer className="py-8 mt-10 bg-[var(--background)]" id="contact">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Logo and Description */}
@@ -13,7 +13,7 @@ const Footer: FC = () => {
               بی‌مرز
             </h2>
             <p className="text-[var(--heading)] text-sm mb-4">
-              توضیحات بسیار کوتاهی درباره پروژه‌های بی‌مرز و اهدافشان.
+              توضیحات بسیار کوتاهی درباره کارهای بی‌مرز و اهدافشان.
             </p>
             <SocialLinks />
           </div>

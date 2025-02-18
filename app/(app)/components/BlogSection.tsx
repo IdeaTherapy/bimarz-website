@@ -1,7 +1,6 @@
 "use client";
 
 import BlogCard from "@/app/(app)/components/BlogCard";
-import { useViewportSize } from "../hooks/useViewportSize";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useCallback, useEffect, useState } from "react";
@@ -21,13 +20,12 @@ interface PostsResponse {
 }
 
 function BlogSection() {
-  const viewportSize = useViewportSize();
   const [posts, setPosts] = useState<Post[]>([]);
 
   const fetchRecentPosts = useCallback(async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=1&limit=6&sort=-createdAt`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=1&limit=3&sort=-createdAt`
       );
       if (!res.ok) throw new Error("Failed to fetch posts");
       const data: PostsResponse = await res.json();
@@ -41,17 +39,15 @@ function BlogSection() {
     fetchRecentPosts();
   }, [fetchRecentPosts]);
 
-  const displayPosts = viewportSize === "sm" ? posts.slice(0, 4) : posts;
-
   return (
     <div className="flex flex-row flex-wrap gap-10 justify-center mx-10 my-5">
       <div className="flex justify-center w-full">
-        <h1 className="text-4xl font-bold text-right">
+        <h1 className="text-3xl font-bold text-right">
           گزارش فعالیت‌های بی‌مرز
         </h1>
       </div>
 
-      {displayPosts.map((post) => (
+      {posts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}
 

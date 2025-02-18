@@ -3,8 +3,8 @@ import SignButton from "./SignButton";
 function Introduction() {
   return (
     <div className="flex flex-col items-start justify-center w-full max-w-2xl gap-10 px-4">
-      <h1 className="text-4xl md:text-6xl font-bold text-right mb-2 mt-10">
-        [شعار بی‌مرز]
+      <h1 className="text-2xl md:text-4xl font-bold text-right mb-2 mt-24 md:mt-10">
+        برای گسترش عادلانه جریان آگاهی
       </h1>
       <div className="flex flex-col justify-center items-center">
         <p className="text-md md:text-lg text-gray-700 leading-8 text-justify">

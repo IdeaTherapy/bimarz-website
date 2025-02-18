@@ -11,8 +11,8 @@ function IntroAsset() {
       <Image
         src="/intro-asset.jpg"
         alt="Intro Asset"
-        width={viewportSize === "sm" ? 300 : 450}
-        height={viewportSize === "sm" ? 200 : 300}
+        width={viewportSize === "sm" ? 300 : 600}
+        height={viewportSize === "sm" ? 200 : 400}
         className="shadow-lg rounded-xl"
       />
       <div className="block md:hidden my-10">

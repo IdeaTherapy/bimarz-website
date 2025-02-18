@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import BlogCard from "@/app/(app)/components/BlogCard";
 import type { Post } from "@/payload-types";
+import { formatPersianNumber } from "../utils/numbers";
 
 const dateFilters = [
   { id: 1, name: "همه" },
@@ -275,7 +276,7 @@ export default function BlogList({ initialData }: BlogListProps) {
                 onClick={() => handlePageChange(i + 1)}
                 className="px-4 py-2"
               >
-                {i + 1}
+                {formatPersianNumber(i + 1)}
               </Button>
             ))}
 

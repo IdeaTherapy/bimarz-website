@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import moment from "jalali-moment";
 import type { Post } from "@/payload-types";
+import { formatPersianNumber } from "../../utils/numbers";
 
 interface LexicalTextNode {
   type: "text";
@@ -39,9 +40,9 @@ interface BlogPostProps {
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
-  const persianDate = moment(post.createdAt)
-    .locale("fa")
-    .format("DD MMMM YYYY");
+  const persianDate = formatPersianNumber(
+    moment(post.createdAt).locale("fa").format("DD MMMM YYYY")
+  );
 
   // Type assertion for Lexical content
   const content = post.content.root.children as unknown as LexicalNode[];

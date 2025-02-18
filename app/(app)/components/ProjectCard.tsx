@@ -3,15 +3,15 @@ import { FC } from "react";
 
 interface ProjectCardProps {
   title: string;
-  totalAmount: string;
-  contributors: number;
+  description: string;
+  receivedAid: string;
   imageUrl: string;
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({
   title,
-  totalAmount,
-  contributors,
+  description,
+  receivedAid,
   imageUrl,
 }) => {
   return (
@@ -32,23 +32,23 @@ const ProjectCard: FC<ProjectCardProps> = ({
       {/* Content */}
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-6 text-center">{title}</h3>
-
+        <p className="text-gray-600 mb-6 text-center">{description}</p>
         {/* Stats Container */}
         <div className="space-y-4 mb-6">
           {/* Total Amount */}
           <div className="flex flex-row justify-between items-center">
             <span className="text-gray-600">حمایت‌ شده تا به حال</span>
             <span className="text-lg font-bold text-gray-900">
-              {totalAmount}
+              {receivedAid}
             </span>
           </div>
 
           {/* Contributors */}
           <div className="flex flex-row justify-between items-center">
-            <span className="text-gray-600">حامیان</span>
+            {/* <span className="text-gray-600">حامیان</span>
             <span className="text-lg font-bold text-gray-900">
-              {contributors}
-            </span>
+              {formatPersianNumber(contributors)}
+            </span> */}
           </div>
         </div>
 

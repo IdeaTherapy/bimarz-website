@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { formatPersianNumber } from "../../utils/numbers";
 
 const ContactInfo: FC = () => {
   return (
@@ -21,7 +22,7 @@ const ContactInfo: FC = () => {
           className="flex items-center gap-2 text-[var(--heading)] hover:text-[var(--primary-700)] transition-colors duration-200"
         >
           <Phone className="w-5 h-5" />
-          <span dir="ltr">021-88064683</span>
+          <span dir="ltr">{formatPersianNumber("021-88064683")}</span>
         </a>
 
         <a
