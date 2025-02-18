@@ -21,7 +21,7 @@ async function getPosts(
   dateFilter?: string
 ) {
   try {
-    let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=${page}&limit=${limit}`;
+    let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=${page}&limit=${limit}&sort=-createdAt`;
 
     if (tags && tags.length > 0) {
       url += `&where[tags][in][]=${tags.join("&where[tags][in][]=")}`;

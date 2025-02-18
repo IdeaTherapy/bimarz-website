@@ -106,7 +106,7 @@ export default function BlogList({ initialData }: BlogListProps) {
   };
 
   const fetchPosts = useCallback(async () => {
-    let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=${currentPage}&limit=10`;
+    let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?depth=1&page=${currentPage}&limit=10&sort=-createdAt`;
 
     if (selectedTags.length > 0) {
       url += `&where[tags][in][]=${selectedTags.join("&where[tags][in][]=")}`;
