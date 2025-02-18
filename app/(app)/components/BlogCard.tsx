@@ -1,8 +1,7 @@
 "use client";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import Link from "next/link";
 import type { Post } from "@/payload-types";
 import { useRouter } from "next/navigation";
 interface LexicalTextNode {
@@ -38,7 +37,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <Card
-      className="w-[400px] overflow-hidden cursor-pointer"
+      className="w-[400px] overflow-hidden border-none cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
       onClick={() => router.push(`/blog/${post.id}`)}
     >
       <div className="relative h-[300px] w-full mb-5">
@@ -58,7 +57,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           {post.tags?.[0] && typeof post.tags[0] !== "string" && (
             <Badge
               variant="default"
-              className="bg-[#00966D] rounded-full shadow-none min-w-[70px]"
+              className="bg-[var(--tag-badge)] hover:bg-[var(--tag-badge)] rounded-md shadow-none min-w-[70px]"
             >
               <p className="mx-auto">{post.tags[0].name}</p>
             </Badge>
@@ -70,9 +69,9 @@ export default function BlogCard({ post }: BlogCardProps) {
           </p>
         </div>
       </CardContent>
-      <CardFooter className="flex flex-row justify-end text-[#671D57] mb-[-10px] font-bold text-xl -mt-[20px]">
+      {/* <CardFooter className="flex flex-row justify-end text-[#671D57] mb-[-10px] font-bold text-xl -mt-[20px]">
         <Link href={`/blog/${post.id}`}>- بخوانید -</Link>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

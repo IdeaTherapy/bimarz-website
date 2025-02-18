@@ -47,7 +47,7 @@ export default function BlogPost({ post }: BlogPostProps) {
   const content = post.content.root.children as unknown as LexicalNode[];
 
   return (
-    <article className="min-h-screen bg-gradient-to-bl from-[#ADDE65] to-[#63EDC8] pb-20">
+    <article className="min-h-screen bg-white pb-20">
       {/* Hero Section */}
       <div className="relative h-[500px] w-full">
         {typeof post.featuredImage !== "string" && (
@@ -69,22 +69,14 @@ export default function BlogPost({ post }: BlogPostProps) {
           <div className="mb-8">
             <div className="flex flex-row justify-between items-center mb-4">
               <div className="flex gap-2">
-                {post.tags?.map((tag) => {
-                  if (typeof tag === "string") return null;
-                  return (
-                    <Badge
-                      key={tag.id}
-                      variant="default"
-                      className="bg-[#00966D] rounded-full shadow-none px-4 py-1"
-                    >
-                      <p className="mx-auto text-lg">{tag.name}</p>
-                    </Badge>
-                  );
-                })}
+                <h1 className="text-4xl font-bold text-right mb-4 pt-4">
+                  {post.title}
+                </h1>
               </div>
-              <time className="text-gray-500 text-lg">{persianDate}</time>
+              <time className="text-[var(--heading)] text-lg">
+                {persianDate}
+              </time>
             </div>
-            <h1 className="text-4xl font-bold text-right mb-4">{post.title}</h1>
           </div>
 
           {/* Main Content */}
@@ -129,7 +121,8 @@ export default function BlogPost({ post }: BlogPostProps) {
                   return (
                     <Badge
                       key={tag.id}
-                      className="bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer"
+                      variant="default"
+                      className="bg-[var(--tag-badge)] text-[var(--heading)] hover:bg-[var(--tag-badge)]"
                     >
                       #{tag.name}
                     </Badge>

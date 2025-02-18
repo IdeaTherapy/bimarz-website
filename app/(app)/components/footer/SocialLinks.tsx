@@ -9,7 +9,7 @@ const SocialLinks: FC = () => {
         href="https://t.me/bimarz"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-600 hover:text-[#671D57] transition-colors duration-200"
+        className="text-[var(--heading)] hover:text-[var(--primary-700)] transition-colors duration-200"
         aria-label="Telegram"
       >
         <Send />
@@ -19,7 +19,7 @@ const SocialLinks: FC = () => {
         href="https://instagram.com/bimarz"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-600 hover:text-[#671D57] transition-colors duration-200"
+        className="text-[var(--heading)] hover:text-[var(--primary-700)] transition-colors duration-200"
         aria-label="Instagram"
       >
         <Instagram />

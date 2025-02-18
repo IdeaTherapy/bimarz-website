@@ -165,7 +165,7 @@ export default function BlogList({ initialData }: BlogListProps) {
   return (
     <div className="flex min-h-screen mt-20">
       {/* Filter Sidebar */}
-      <div className="w-64 px-4 py-6 border-l">
+      <div className="min-w-64 px-8 py-6">
         <div className="space-y-6">
           {/* Tags Filter */}
           <div>
@@ -174,10 +174,12 @@ export default function BlogList({ initialData }: BlogListProps) {
               {tags.map((tag) => (
                 <Badge
                   key={tag.id}
-                  variant={
-                    selectedTags.includes(tag.id) ? "default" : "secondary"
-                  }
-                  className="cursor-pointer"
+                  variant={"default"}
+                  className={`cursor-pointer ${
+                    selectedTags.includes(tag.id)
+                      ? "bg-[var(--primary-700)] text-[var(--primary-foreground)] hover:bg-[var(--primary-700)]"
+                      : "bg-[var(--tag-badge)] text-[var(--heading)] hover:bg-[var(--tag-badge)]"
+                  }`}
                   onClick={() => handleTagToggle(tag.id)}
                 >
                   {tag.name}
@@ -194,9 +196,13 @@ export default function BlogList({ initialData }: BlogListProps) {
                 <Button
                   key={filter.id}
                   variant={
-                    selectedDateFilter === filter.name ? "default" : "outline"
+                    selectedDateFilter === filter.name ? "default" : "default"
                   }
-                  className="justify-start"
+                  className={`justify-start ${
+                    selectedDateFilter === filter.name
+                      ? "bg-[var(--primary-700)] text-[var(--primary-foreground)] hover:bg-[var(--primary-700)]"
+                      : "bg-[var(--tag-badge)] text-[var(--heading)] hover:bg-[var(--tag-badge)]"
+                  }`}
                   onClick={() => handleDateFilterChange(filter.name)}
                 >
                   {filter.name}
@@ -224,8 +230,8 @@ export default function BlogList({ initialData }: BlogListProps) {
               return (
                 <Badge
                   key={tagId}
-                  variant="secondary"
-                  className="cursor-pointer"
+                  variant="default"
+                  className="cursor-pointer bg-[var(--primary-700)] text-[var(--primary-foreground)] hover:bg-[var(--primary-700)]"
                   onClick={() => handleTagToggle(tagId)}
                 >
                   {tag.name} ✕
@@ -234,8 +240,8 @@ export default function BlogList({ initialData }: BlogListProps) {
             })}
             {selectedDateFilter !== "همه" && (
               <Badge
-                variant="secondary"
-                className="cursor-pointer"
+                variant="default"
+                className="cursor-pointer bg-[var(--primary-700)] text-[var(--primary-foreground)] hover:bg-[var(--primary-700)]"
                 onClick={() => handleDateFilterChange("همه")}
               >
                 {selectedDateFilter} ✕

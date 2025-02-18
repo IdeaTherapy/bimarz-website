@@ -106,14 +106,14 @@ function Navbar() {
             >
               <Link
                 href="#"
-                className="social-icon hover:text-[#671D57] transition-colors duration-200"
+                className="social-icon hover:text-[var(--primary-700)] transition-colors duration-200"
                 aria-label="Instagram بی‌مرز"
               >
                 <Instagram className="h-5 w-5" aria-hidden="true" />
               </Link>
               <Link
                 href="#"
-                className="social-icon hover:text-[#671D57] transition-colors duration-200"
+                className="social-icon hover:text-[var(--primary-700)] transition-colors duration-200"
                 aria-label="Telegram بی‌مرز"
               >
                 <Send className="h-5 w-5" aria-hidden="true" />

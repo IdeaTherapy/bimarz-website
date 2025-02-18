@@ -4,13 +4,15 @@ import SocialLinks from "./SocialLinks";
 
 const Footer: FC = () => {
   return (
-    <footer className="py-8 mt-16">
+    <footer className="py-8 mt-10 bg-[var(--background)]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Logo and Description */}
           <div className="flex flex-col items-start">
-            <h2 className="text-2xl font-bold mb-4 text-[#671D57]">بی‌مرز</h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <h2 className="text-2xl font-bold mb-4 text-[var(--primary-700)]">
+              بی‌مرز
+            </h2>
+            <p className="text-[var(--heading)] text-sm mb-4">
               توضیحات بسیار کوتاهی درباره پروژه‌های بی‌مرز و اهدافشان.
             </p>
             <SocialLinks />

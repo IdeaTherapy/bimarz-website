@@ -53,7 +53,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         </div>
 
         {/* Help Button */}
-        <button className="w-full bg-[#FD8F00] text-white py-3 rounded-xl hover:bg-[#e58100] transition-colors text-lg font-bold">
+        <button className="w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold">
           حمایت می‌کنم
         </button>
       </div>

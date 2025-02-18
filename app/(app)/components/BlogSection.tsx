@@ -57,7 +57,7 @@ function BlogSection() {
 
       <div className="flex justify-center w-full my-10">
         <Link href="/blog">
-          <Button className="bg-[#671D57] text-white px-6 py-7 rounded-full hover:bg-[#320d2a] transition-colors text-2xl">
+          <Button className="bg-[var(--secondary-400)] text-white px-6 py-7 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-2xl">
             مشاهده همه گزارش‌ها
           </Button>
         </Link>
