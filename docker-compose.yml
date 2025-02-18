@@ -1,22 +1,31 @@
 services:
-  postgres:
-    image: postgres:16
+  bimarz-website:
+    image: registry-b9200d2040-azta.apps.ir-central1.arvancaas.ir/bimarz-website:latest
+    restart: always
+    env_file:
+      - .env
     ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=bimarz
+      - "3000:3000"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - media_data:/app/media
+    networks:
+      - azta-network
+      - bimarz-network
 
   mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
+    image: docker.arvancloud.ir/mongo:latest
+    restart: always
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - azta-network
+      - bimarz-network
 
 volumes:
-  postgres_data:
   mongodb_data:
+  media_data:
+
+networks:
+  bimarz-network:
+  azta-network:
+    external: true

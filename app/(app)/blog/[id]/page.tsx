@@ -2,6 +2,11 @@ import { notFound } from "next/navigation";
 import type { Post } from "@/payload-types";
 import BlogPost from "./BlogPost";
 
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 async function getPost(id: string) {
   try {
     const res = await fetch(
@@ -18,8 +23,9 @@ async function getPost(id: string) {
   }
 }
 
-export default async function BlogPage({ params }: { params: { id: string } }) {
-  const post = await getPost(params.id);
+export default async function BlogPage({ params }: Props) {
+  const resolvedParams = await params;
+  const post = await getPost(resolvedParams.id);
 
   if (!post) {
     notFound();

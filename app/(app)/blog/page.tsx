@@ -14,6 +14,14 @@ interface PostsResponse {
   nextPage: number | null;
 }
 
+type PageProps = {
+  searchParams: Promise<{
+    page?: string;
+    tags?: string;
+    dateFilter?: string;
+  }>;
+};
+
 async function getPosts(
   page = 1,
   limit = 10,
@@ -61,14 +69,11 @@ async function getPosts(
   }
 }
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: { page?: string; tags?: string; dateFilter?: string };
-}) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const tags = searchParams.tags ? searchParams.tags.split(",") : undefined;
-  const dateFilter = searchParams.dateFilter;
+export default async function BlogPage({ searchParams }: PageProps) {
+  const resolvedParams = await searchParams;
+  const page = resolvedParams.page ? parseInt(resolvedParams.page) : 1;
+  const tags = resolvedParams.tags ? resolvedParams.tags.split(",") : undefined;
+  const dateFilter = resolvedParams.dateFilter;
 
   const postsData = await getPosts(page, 10, tags, dateFilter);
 

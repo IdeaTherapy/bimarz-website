@@ -1,7 +1,7 @@
 import sharp from "sharp";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { buildConfig, CollectionSlug } from "payload";
+import { buildConfig } from "payload";
 import { Users } from "@/collections/Users";
 import { Media } from "@/collections/Media";
 import { Tags } from "@/collections/Tags";
@@ -43,18 +43,6 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || "",
   }),
-  async onInit(payload) {
-    const { totalDocs: postsCount } = await payload.count({
-      collection: "posts" as CollectionSlug,
-    });
-
-    if (!postsCount) {
-      await payload.create({
-        collection: "posts" as CollectionSlug,
-        data: { title: "Post 1" } as Record<string, unknown>,
-      });
-    }
-  },
   // If you want to resize images, crop, set focal point, etc.
   // make sure to install it and pass it to the config.
   // This is optional - if you don't need to do these things,
