@@ -1,6 +1,15 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 function SignButton() {
+  const router = useRouter();
   return (
-    <button className="bg-[var(--secondary-400)] text-white px-8 py-3 rounded-full text-lg hover:bg-[var(--secondary-600)] transition-colors flex items-center gap-2">
+    <button
+      onClick={() => {
+        router.push("/#projects");
+      }}
+      className="bg-[var(--secondary-400)] text-white px-8 py-3 rounded-full text-lg hover:bg-[var(--secondary-600)] transition-colors flex items-center gap-2"
+    >
       شریک بی‌مرز شوید
       <svg
         className="w-5 h-5"

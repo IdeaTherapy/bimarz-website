@@ -3,27 +3,29 @@ import ProjectCard from "./ProjectCard";
 const FeaturedProjects = () => {
   const projects = [
     {
-      title: "آبونمان کتاب",
-      description: "ارسال کتاب",
+      title: "آبونمان",
+
       // totalAmount: "12,345,678",
       receivedAid: "۴۵۶ نفر",
       // TODO: make contributors and total amount dynamic
       // contributors: 5432,
-      imageUrl: "/project2.jpg",
+      description:
+        "معادل پوشش ۱۰ کودک و نوجوان برای یک سال ارسال کتاب به صورت ماهیانه",
+      imageUrl: "/abooneman.jpg",
     },
 
     {
       title: "ماراتن",
-      description: "آموزش تسهیلگر کتابخوانی",
       // totalAmount: "8,765,432",
+      description: "معادل پوشش آموزش برای ۱ تسهیلگر کتابخوانی و پشتیبانی",
       receivedAid: "۱۰۴۲ تسهیلگر",
       // TODO: make contributors and total amount dynamic
       // contributors: 3456,
-      imageUrl: "/project3.jpg",
+      imageUrl: "/maraton.jpg",
     },
     {
       title: "شهرزاد",
-      description: "تجهیز کتابخانه‌های مدارس",
+      description: "معادل تجهیز یک کتابخانه ۳۰۰ جلدی",
       // totalAmount: "16,506,532",
       receivedAid: "۳۱ کتابخانه",
       // contributors: 8111,

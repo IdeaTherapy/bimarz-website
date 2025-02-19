@@ -17,6 +17,7 @@ interface DonationDialogProps {
   onOpenChange: (open: boolean) => void;
   projectTitle: string;
   projectImage: string;
+  description: string;
 }
 
 const DonationDialog: FC<DonationDialogProps> = ({
@@ -24,6 +25,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
   onOpenChange,
   projectTitle,
   projectImage,
+  description,
 }) => {
   const STEP_AMOUNT = 20000;
   const MIN_AMOUNT = 20000;
@@ -52,7 +54,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[90vw] lg:max-w-[1000px] p-0 gap-0 overflow-y-auto max-h-[90vh]">
+      <DialogContent className="max-w-[90vw] lg:max-w-[1000px] p-0 gap-0 overflow-y-auto max-h-[90vh] bg-[var(--background)]">
         <div className="flex flex-col-reverse lg:flex-row-reverse h-full">
           {/* Right side - Form */}
           <div className="flex-1 p-6 lg:p-8 text-right" dir="rtl">
@@ -67,28 +69,38 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <label htmlFor="name" className="block text-sm mb-2">
                   نام
                 </label>
-                <Input id="name" className="text-right bg-white" />
+                <Input
+                  id="name"
+                  className="text-right bg-white border-[var(--border)]"
+                />
               </div>
 
               <div>
                 <label htmlFor="family" className="block text-sm mb-2">
                   نام خانوادگی
                 </label>
-                <Input id="family" className="text-right bg-white" />
+                <Input
+                  id="family"
+                  className="text-right bg-white border-[var(--border)]"
+                />
               </div>
 
               <div>
                 <label htmlFor="phone" className="block text-sm mb-2">
                   شماره تماس
                 </label>
-                <Input id="phone" type="tel" className="text-right bg-white" />
+                <Input
+                  id="phone"
+                  type="tel"
+                  className="text-right bg-white border-[var(--border)]"
+                />
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="flex-1 flex items-center">
                   <button
                     onClick={incrementAmount}
-                    className="w-12 h-12 rounded-full bg-[#F3A063] text-white text-2xl flex items-center justify-center hover:bg-[#e58100] transition-colors"
+                    className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
                     disabled={amount >= MAX_AMOUNT}
                   >
                     +
@@ -104,7 +116,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
                   />
                   <button
                     onClick={decrementAmount}
-                    className="w-12 h-12 rounded-full bg-[#F3A063] text-white text-2xl flex items-center justify-center hover:bg-[#e58100] transition-colors"
+                    className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
                     disabled={amount <= MIN_AMOUNT}
                   >
                     -
@@ -113,7 +125,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <span className="text-sm">تومان</span>
               </div>
 
-              <button className="w-full bg-[#FD8F00] text-white py-3 rounded-xl hover:bg-[#e58100] transition-colors text-lg font-bold">
+              <button className="w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold">
                 پرداخت
               </button>
 
@@ -136,14 +148,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
               />
             </div>
             <p className="text-right leading-7 text-gray-700" dir="rtl">
-              پروژه «بی‌مرز» با عشقی به کتاب و آگاهی شکل گرفته تا لبخند را به
-              چهره کسانی بیاورد که در گوشه‌وکنار این سرزمین، دسترسی کمتری به
-              منابع آموزشی و فرهنگی دارند. در این مسیر، ما به تجهیز کتابخانه‌های
-              مناطق محروم و ارسال کتاب به دل روستاها و شهرهای دورافتاده
-              می‌پردازیم، تا هیچ مرزی مانع رسیدن دانش نشود. اگر دوست دارید شما
-              هم سهمی در این حرکت زیبا داشته باشید، بسته‌های پرداختی متنوعی
-              آماده کرده‌ایم که با هر بودجه‌ای می‌توانید در این کار خیر شریک
-              شوید و دل‌های بیشتری را روشن کنید.
+              {description}
             </p>
           </div>
 

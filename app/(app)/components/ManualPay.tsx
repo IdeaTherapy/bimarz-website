@@ -220,7 +220,7 @@ const ManualPay = () => {
                 <div className="flex items-center justify-center gap-4 mb-8">
                   <button
                     onClick={handleDecrement}
-                    className="w-12 h-12 rounded-full bg-[#FD8F00] text-white text-2xl flex items-center justify-center hover:bg-[#e58100] transition-colors"
+                    className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
                   >
                     -
                   </button>
@@ -235,7 +235,7 @@ const ManualPay = () => {
                   </div>
                   <button
                     onClick={handleIncrement}
-                    className="w-12 h-12 rounded-full bg-[#FD8F00] text-white text-2xl flex items-center justify-center hover:bg-[#e58100] transition-colors"
+                    className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
                   >
                     +
                   </button>
@@ -243,7 +243,7 @@ const ManualPay = () => {
 
                 <button
                   onClick={() => setIsDialogOpen(true)}
-                  className="w-full bg-[#FD8F00] text-white py-3 rounded-xl hover:bg-[#e58100] transition-colors text-lg font-bold mb-4"
+                  className="w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold mb-4"
                 >
                   پرداخت
                 </button>
@@ -293,7 +293,7 @@ const ManualPay = () => {
                     <div className="empty-state">
                       <div className="text-gray-500">
                         با حمایت بی‌مرز می‌توانید مبلغ دلخواهتان را در اختیار
-                        پروژه‌های با اولویت بیشتر قرار دهید.
+                        پویش‌های با اولویت بیشتر قرار دهید.
                       </div>
                     </div>
                   )}
@@ -304,7 +304,10 @@ const ManualPay = () => {
         </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="sm:max-w-md" dir="rtl">
+          <DialogContent
+            className="sm:max-w-md bg-[var(--background)]"
+            dir="rtl"
+          >
             <DialogHeader className="pr-5">
               <DialogTitle>اطلاعات پرداخت</DialogTitle>
             </DialogHeader>
@@ -317,6 +320,7 @@ const ManualPay = () => {
                   required
                   value={formData.firstName}
                   onChange={handleInputChange}
+                  className="border-[var(--border)]"
                 />
               </div>
               <div className="space-y-2">
@@ -327,6 +331,7 @@ const ManualPay = () => {
                   required
                   value={formData.lastName}
                   onChange={handleInputChange}
+                  className="border-[var(--border)]"
                 />
               </div>
               <div className="space-y-2">
@@ -339,16 +344,17 @@ const ManualPay = () => {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   dir="ltr"
+                  className="border-[var(--border)]"
                 />
               </div>
             </div>
-            <DialogFooter className="sm:justify-start">
+            <DialogFooter className="sm:justify-start mt-3">
               <button
                 onClick={handlePaymentSubmit}
                 disabled={!isFormValid}
-                className={`w-full bg-[#FD8F00] text-white py-3 rounded-xl transition-colors text-lg font-bold ${
+                className={`w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl transition-colors text-lg font-bold ${
                   isFormValid
-                    ? "hover:bg-[#e58100]"
+                    ? "hover:bg-[var(--secondary-600)]"
                     : "opacity-50 cursor-not-allowed"
                 }`}
               >

@@ -7,9 +7,14 @@ import DonationDialog from "./DonationDialog";
 interface ProjectCardProps {
   title: string;
   imageUrl: string;
+  description: string;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl }) => {
+const ProjectCard: FC<ProjectCardProps> = ({
+  title,
+  imageUrl,
+  description,
+}) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
@@ -35,7 +40,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl }) => {
           {/* Help Button */}
           <button
             onClick={() => setIsDialogOpen(true)}
-            className="w-full bg-[#FD8F00] text-white py-3 rounded-xl hover:bg-[#e58100] transition-colors text-lg font-bold"
+            className="w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold"
           >
             حمایت می‌کنم
           </button>
@@ -47,6 +52,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl }) => {
         onOpenChange={setIsDialogOpen}
         projectTitle={title}
         projectImage={imageUrl}
+        description={description}
       />
     </>
   );

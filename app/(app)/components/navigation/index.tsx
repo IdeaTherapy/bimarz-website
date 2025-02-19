@@ -1,10 +1,8 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Instagram, Send } from "lucide-react";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
-
+import Image from "next/image";
 function Navbar() {
   const [opacity, setOpacity] = useState<number>(0.4);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -104,20 +102,21 @@ function Navbar() {
               role="navigation"
               aria-label="Social media links"
             >
-              <Link
-                href="#"
+              <Image src="/logo.jpg" alt="logo" width={40} height={40} />
+              {/* <Link
+                href={INSTAGRAM_URL}
                 className="social-icon hover:text-[var(--primary-700)] transition-colors duration-200"
                 aria-label="Instagram بی‌مرز"
               >
                 <Instagram className="h-5 w-5" aria-hidden="true" />
               </Link>
               <Link
-                href="#"
+                href={TELEGRAM_URL}
                 className="social-icon hover:text-[var(--primary-700)] transition-colors duration-200"
                 aria-label="Telegram بی‌مرز"
               >
                 <Send className="h-5 w-5" aria-hidden="true" />
-              </Link>
+              </Link> */}
             </div>
 
             {/* Mobile Menu */}

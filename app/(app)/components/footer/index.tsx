@@ -1,7 +1,7 @@
 import { FC } from "react";
 import ContactInfo from "./ContactInfo";
 import SocialLinks from "./SocialLinks";
-
+import Image from "next/image";
 const Footer: FC = () => {
   return (
     <footer className="py-8 mt-10 bg-[var(--background)]" id="contact">
@@ -10,10 +10,10 @@ const Footer: FC = () => {
           {/* Logo and Description */}
           <div className="flex flex-col items-start">
             <h2 className="text-2xl font-bold mb-4 text-[var(--primary-700)]">
-              بی‌مرز
+              <Image src="/logo.jpg" alt="logo" width={70} height={70} />
             </h2>
             <p className="text-[var(--heading)] text-sm mb-4">
-              توضیحات بسیار کوتاهی درباره کارهای بی‌مرز و اهدافشان.
+              با «بی مرز» محدودیت‌های جریان آگاهی را درنوردیم.
             </p>
             <SocialLinks />
           </div>
