@@ -13,18 +13,17 @@ body {
     --foreground: #252b27; /* HSL: 165 6% 15% */
     --heading: #000000; /* HSL: 0 0% 0% */
 
-    /* Primary colors - Teal */
-    --primary-50: #ebf9f6; /* HSL: 168 86% 95% */
-    --primary-100: #d7f3ed; /* HSL: 168 84% 90% */
-    --primary-200: #afe7db; /* HSL: 168 82% 80% */
-    --primary-300: #87dbc9; /* HSL: 168 78% 70% */
-    --primary-400: #5fcfb7; /* HSL: 168 74% 60% */
-    --primary-500: #128972; /* HSL: 168 77% 31% */
-    --primary-600: #0f6f5c; /* HSL: 168 78% 25% */
-    --primary-700: #0c5547; /* HSL: 168 80% 20% */
-    --primary-800: #093b31; /* HSL: 168 82% 15% */
-    --primary-900: #06211c; /* HSL: 168 84% 10% */
-    --primary-950: #031110; /* HSL: 168 86% 5% */
+    /* Primary colors - Blue */
+    --primary-50: #f0f7fe; /* HSL: 204, 82%, 97% */
+    --primary-100: #e1effd; /* HSL: 204, 82%, 94% */
+    --primary-200: #c3dffa; /* HSL: 204, 82%, 87% */
+    --primary-300: #a5cff8; /* HSL: 204, 82%, 80% */
+    --primary-400: #87bff5; /* HSL: 204, 82%, 74% */
+    --primary-500: #4aa4eb; /* HSL: 204, 82%, 61% */
+    --primary-600: #1c85d9; /* HSL: 204, 82%, 48% */
+    --primary-700: #1666aa; /* HSL: 204, 82%, 38% */
+    --primary-800: #10477a; /* HSL: 204, 82%, 27% */
+    --primary-950: #0a284a; /* HSL: 204, 82%, 16% */
 
     /* Secondary colors - Orange */
     --secondary-50: #fef2ec; /* HSL: 21 86% 95% */
@@ -73,17 +72,16 @@ body {
     --popover-foreground: #e8ebec; /* HSL: 200 6% 92% */
 
     /* Primary colors in dark mode */
-    --primary-50: #031110; /* HSL: 168 86% 5% */
-    --primary-100: #06211c; /* HSL: 168 84% 10% */
-    --primary-200: #093b31; /* HSL: 168 82% 15% */
-    --primary-300: #0c5547; /* HSL: 168 78% 20% */
-    --primary-400: #0f6f5c; /* HSL: 168 74% 25% */
-    --primary-500: #128972; /* HSL: 168 77% 31% */
-    --primary-600: #1ab899; /* HSL: 168 78% 40% */
-    --primary-700: #21e6bf; /* HSL: 168 80% 50% */
-    --primary-800: #5fcfb7; /* HSL: 168 82% 60% */
-    --primary-900: #87dbc9; /* HSL: 168 84% 70% */
-    --primary-950: #afe7db; /* HSL: 168 86% 80% */
+    --primary-50: #0a284a; /* HSL: 204, 82%, 16% */
+    --primary-100: #10477a; /* HSL: 204, 82%, 27% */
+    --primary-200: #1666aa; /* HSL: 204, 82%, 38% */
+    --primary-300: #1c85d9; /* HSL: 204, 82%, 48% */
+    --primary-400: #4aa4eb; /* HSL: 204, 82%, 61% */
+    --primary-500: #87bff5; /* HSL: 204, 82%, 74% */
+    --primary-600: #a5cff8; /* HSL: 204, 82%, 80% */
+    --primary-700: #c3dffa; /* HSL: 204, 82%, 87% */
+    --primary-800: #e1effd; /* HSL: 204, 82%, 94% */
+    --primary-900: #f0f7fe; /* HSL: 204, 82%, 97% */
 
     /* Secondary colors in dark mode */
     --secondary-50: #3b2815; /* HSL: 21 86% 15% */

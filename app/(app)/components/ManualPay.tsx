@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+import { formatPersianNumber } from "../utils/numbers";
 interface ProjectInfo {
   name: string;
   amount: number;
@@ -32,25 +32,33 @@ const ManualPay = () => {
     phoneNumber: "",
   });
 
-  const projectAmounts: Record<string, ProjectInfo> = {
-    library: {
-      name: "تجهیز کتابخانه‌های مدارس",
-      amount: 50000,
-      formatText: (count: number) => `${count} کتابخانه رو تجهیز کنیم.`,
-    },
-    subscription: {
-      name: "آبونمان کتاب",
-      amount: 20000,
-      formatText: (count: number) =>
-        `${count} کتاب برای اعضای آبونمان بفرستیم.`,
-    },
-    facilitator: {
-      name: "آموزش تسهیلگر کتابخوانی",
-      amount: 30000,
-      formatText: (count: number) =>
-        `${count} تسهیلگر کتابخوانی رو آموزش بدیم.`,
-    },
-  };
+  const [formErrors, setFormErrors] = useState<{
+    phoneNumber?: string;
+  }>({});
+
+  const projectAmounts: Record<string, ProjectInfo> = useMemo(
+    () => ({
+      library: {
+        name: "تجهیز کتابخانه‌های مدارس",
+        amount: 50000,
+        formatText: (count: number) =>
+          `${formatPersianNumber(count)} کتابخانه رو تجهیز کنیم.`,
+      },
+      subscription: {
+        name: "آبونمان کتاب",
+        amount: 20000,
+        formatText: (count: number) =>
+          `${formatPersianNumber(count)} کتاب برای اعضای آبونمان بفرستیم.`,
+      },
+      facilitator: {
+        name: "آموزش تسهیلگر کتابخوانی",
+        amount: 30000,
+        formatText: (count: number) =>
+          `${formatPersianNumber(count)} تسهیلگر کتابخوانی رو آموزش بدیم.`,
+      },
+    }),
+    []
+  );
 
   const handleIncrement = () => {
     const currentAmount = parseInt(amount.replace(/,/g, ""));
@@ -64,12 +72,36 @@ const ManualPay = () => {
     }
   };
 
+  const validatePhoneNumber = (phone: string): boolean => {
+    // Iranian mobile number format: 09XX XXX XXXX
+    const phoneRegex = /^09[0-9]{9}$/;
+    return phoneRegex.test(phone.replace(/\s+/g, ""));
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    if (name === "phoneNumber") {
+      // Only allow numbers and spaces
+      const sanitizedValue = value.replace(/[^\d\s]/g, "");
+
+      setFormErrors((prev) => ({
+        ...prev,
+        phoneNumber: validatePhoneNumber(sanitizedValue)
+          ? undefined
+          : "لطفا یک شماره موبایل معتبر وارد کنید",
+      }));
+
+      setFormData((prev) => ({
+        ...prev,
+        [name]: sanitizedValue,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handlePaymentSubmit = () => {
@@ -92,10 +124,17 @@ const ManualPay = () => {
     );
 
     return results;
-  }, [amount]);
+  }, [amount, projectAmounts]);
 
-  const isFormValid =
-    formData.firstName && formData.lastName && formData.phoneNumber;
+  const isFormValid = useMemo(() => {
+    return (
+      formData.firstName &&
+      formData.lastName &&
+      formData.phoneNumber &&
+      validatePhoneNumber(formData.phoneNumber) &&
+      !formErrors.phoneNumber
+    );
+  }, [formData, formErrors]);
 
   const styles = `
     @keyframes slideIn {
@@ -192,23 +231,25 @@ const ManualPay = () => {
       const timer = setTimeout(() => {
         setVisibleItems(newEquivalents);
         setAnimatingItems([]);
-      }, 500); // Match this with animation duration
+      }, 300); // Match this with animation duration
       return () => clearTimeout(timer);
     } else if (itemsToAdd.length > 0) {
       setVisibleItems(newEquivalents);
     }
 
     setPrevEquivalents(newEquivalents);
-  }, [calculateEquivalents]);
+  }, [calculateEquivalents, projectAmounts, prevEquivalents]);
 
   return (
     <>
       <style jsx global>
         {styles}
       </style>
-      <section className="py-16 px-4 bg-gray-50" dir="rtl">
+      <section className="py-16 px-4 bg-white" dir="rtl">
         <div className="container mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold text-center mb-4">حمایت بی‌مرز</h2>
+          <h2 className="text-3xl font-bold text-center mb-10 mt-[-20]">
+            حمایت بی‌مرز
+          </h2>
           <div className="bg-white rounded-xl shadow-md overflow-hidden w-full transition-all duration-300 ease-in-out hover:shadow-lg">
             <div className="flex flex-col lg:flex-row">
               {/* Left side - Form */}
@@ -255,7 +296,7 @@ const ManualPay = () => {
               </div>
 
               {/* Right side - Equivalent Projects */}
-              <div className="p-8 lg:w-1/2 flex flex-col justify-center bg-gray-50">
+              <div className="p-8 lg:w-1/2 flex flex-col justify-center bg-[var(--primary-200)]">
                 <div className="text-xl leading-relaxed content-area">
                   {calculateEquivalents.length > 0 ? (
                     <>
@@ -272,7 +313,7 @@ const ManualPay = () => {
                           ).map((text, index) => (
                             <div className="item-container" key={text}>
                               <div
-                                className={`font-bold text-[#671D57] text-right transform ${
+                                className={`font-bold text-[var(--heading)] text-right transform ${
                                   animatingItems.includes(text)
                                     ? "animate-slideOut"
                                     : "animate-slideIn"
@@ -291,7 +332,7 @@ const ManualPay = () => {
                     </>
                   ) : (
                     <div className="empty-state">
-                      <div className="text-gray-500">
+                      <div className="text-[var(--heading)] text-center">
                         با حمایت بی‌مرز می‌توانید مبلغ دلخواهتان را در اختیار
                         پویش‌های با اولویت بیشتر قرار دهید.
                       </div>
@@ -344,8 +385,16 @@ const ManualPay = () => {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   dir="ltr"
-                  className="border-[var(--border)]"
+                  className={`border-[var(--border)] ${
+                    formErrors.phoneNumber ? "border-red-500" : ""
+                  }`}
+                  placeholder="09XX XXX XXXX"
                 />
+                {formErrors.phoneNumber && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.phoneNumber}
+                  </p>
+                )}
               </div>
             </div>
             <DialogFooter className="sm:justify-start mt-3">

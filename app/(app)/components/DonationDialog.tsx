@@ -10,7 +10,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { FC, useState } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
 
 interface DonationDialogProps {
   isOpen: boolean;
@@ -18,6 +17,11 @@ interface DonationDialogProps {
   projectTitle: string;
   projectImage: string;
   description: string;
+}
+interface PaymentFormData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
 }
 
 const DonationDialog: FC<DonationDialogProps> = ({
@@ -30,6 +34,14 @@ const DonationDialog: FC<DonationDialogProps> = ({
   const STEP_AMOUNT = 20000;
   const MIN_AMOUNT = 20000;
   const MAX_AMOUNT = 100000000;
+  const [formData, setFormData] = useState<PaymentFormData>({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+  });
+  const [formErrors, setFormErrors] = useState<{
+    phoneNumber?: string;
+  }>({});
 
   const [amount, setAmount] = useState(MIN_AMOUNT);
 
@@ -52,6 +64,35 @@ const DonationDialog: FC<DonationDialogProps> = ({
     }
   };
 
+  const validatePhoneNumber = (phone: string): boolean => {
+    // Iranian mobile number format: 09XX XXX XXXX
+    const phoneRegex = /^09[0-9]{9}$/;
+    return phoneRegex.test(phone.replace(/\s+/g, ""));
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitizedValue = e.target.value.replace(/[^\d\s]/g, "");
+
+    setFormErrors((prev) => ({
+      ...prev,
+      phoneNumber: validatePhoneNumber(sanitizedValue)
+        ? undefined
+        : "لطفا یک شماره موبایل معتبر وارد کنید",
+    }));
+
+    setFormData((prev) => ({
+      ...prev,
+      phoneNumber: sanitizedValue,
+    }));
+  };
+
+  const isFormValid =
+    formData.firstName &&
+    formData.lastName &&
+    formData.phoneNumber &&
+    validatePhoneNumber(formData.phoneNumber) &&
+    !formErrors.phoneNumber;
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[90vw] lg:max-w-[1000px] p-0 gap-0 overflow-y-auto max-h-[90vh] bg-[var(--background)]">
@@ -72,6 +113,10 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <Input
                   id="name"
                   className="text-right bg-white border-[var(--border)]"
+                  value={formData.firstName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, firstName: e.target.value })
+                  }
                 />
               </div>
 
@@ -82,6 +127,10 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <Input
                   id="family"
                   className="text-right bg-white border-[var(--border)]"
+                  value={formData.lastName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, lastName: e.target.value })
+                  }
                 />
               </div>
 
@@ -92,8 +141,19 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <Input
                   id="phone"
                   type="tel"
-                  className="text-right bg-white border-[var(--border)]"
+                  value={formData.phoneNumber}
+                  onChange={handlePhoneChange}
+                  className={`text-right bg-white border-[var(--border)] ${
+                    formErrors.phoneNumber ? "border-red-500" : ""
+                  }`}
+                  placeholder="09XX XXX XXXX"
+                  dir="ltr"
                 />
+                {formErrors.phoneNumber && (
+                  <p className="text-red-500 text-sm mt-1 text-right">
+                    {formErrors.phoneNumber}
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center gap-4">
@@ -112,7 +172,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
                     min={MIN_AMOUNT}
                     max={MAX_AMOUNT}
                     step={STEP_AMOUNT}
-                    className="text-center border-none text-lg mx-2 bg-white"
+                    className="text-center border-none text-lg mx-auto bg-white w-2/3"
                   />
                   <button
                     onClick={decrementAmount}
@@ -125,7 +185,14 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 <span className="text-sm">تومان</span>
               </div>
 
-              <button className="w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold">
+              <button
+                disabled={!isFormValid}
+                className={`w-full bg-[var(--secondary-400)] text-white py-3 rounded-xl hover:bg-[var(--secondary-600)] transition-colors text-lg font-bold ${
+                  isFormValid
+                    ? "hover:bg-[var(--secondary-600)]"
+                    : "opacity-50 cursor-not-allowed"
+                }`}
+              >
                 پرداخت
               </button>
 
@@ -143,7 +210,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
                 src={projectImage}
                 alt={projectTitle}
                 fill
-                className="object-cover rounded-lg"
+                className="object-cover rounded-lg mt-3"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -153,9 +220,9 @@ const DonationDialog: FC<DonationDialogProps> = ({
           </div>
 
           {/* Custom Close Button */}
-          <DialogClose className="absolute left-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+          <DialogClose className="absolute rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            {/* <X className="h-4 w-4" /> */}
+            {/* <span className="sr-only">Close</span> */}
           </DialogClose>
         </div>
       </DialogContent>
