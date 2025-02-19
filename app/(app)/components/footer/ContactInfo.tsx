@@ -10,11 +10,11 @@ const ContactInfo: FC = () => {
       </h3>
       <div className="space-y-4">
         <a
-          href="mailto:bimarzproject@gmail.com"
+          href="mailto:aztaaclub@gmail.com"
           className="flex items-center gap-2 text-[var(--heading)] hover:text-[var(--primary-700)] transition-colors duration-200"
         >
           <Mail className="w-5 h-5" />
-          <span>bimarzproject@gmail.com</span>
+          <span>aztaaclub@gmail.com</span>
         </a>
 
         <a
