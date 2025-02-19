@@ -5,15 +5,14 @@ REMOTE_HOST = azta-arvan
 REMOTE_DIR = bimarz
 REGISTRY_USERNAME = aliirani
 
-
 # Load environment variables from .env.prod
 include .env.prod
-export
+export ARVAN_DOCKER_PASSWORD
 
 .PHONY: build tag push deploy production login
 
 login:
-	docker login ${REGISTRY} --username ${REGISTRY_USERNAME}
+	docker login ${REGISTRY} --username ${REGISTRY_USERNAME} --password ${ARVAN_DOCKER_PASSWORD}
 
 # Build the Docker image
 build:
