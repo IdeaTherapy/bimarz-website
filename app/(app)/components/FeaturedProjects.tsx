@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCard";
-
+import { ABOONEMAN_PRICE, MARATON_PRICE, SHAHRZAD_PRICE } from "../const";
 const FeaturedProjects = () => {
   const projects = [
     {
@@ -11,7 +11,8 @@ const FeaturedProjects = () => {
       // contributors: 5432,
       description:
         "معادل پوشش ۱۰ کودک و نوجوان برای یک سال ارسال کتاب به صورت ماهیانه",
-      imageUrl: "/abooneman.jpg",
+      imageUrl: "/abooneman.jpeg",
+      price: ABOONEMAN_PRICE,
     },
 
     {
@@ -21,7 +22,8 @@ const FeaturedProjects = () => {
       receivedAid: "۱۰۴۲ تسهیلگر",
       // TODO: make contributors and total amount dynamic
       // contributors: 3456,
-      imageUrl: "/maraton.jpg",
+      imageUrl: "/maraton.jpeg",
+      price: MARATON_PRICE,
     },
     {
       title: "شهرزاد",
@@ -31,6 +33,7 @@ const FeaturedProjects = () => {
       // contributors: 8111,
       // TODO: make contributors and total amount dynamic
       imageUrl: "/project1.jpg",
+      price: SHAHRZAD_PRICE,
     },
   ];
 

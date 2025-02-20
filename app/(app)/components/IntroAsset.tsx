@@ -15,6 +15,7 @@ function IntroAsset() {
         className="w-full max-w-[300px] shadow-lg rounded-xl mb-10"
         controls
         playsInline
+        poster="/thumbnail.jpg"
       >
         <source src="/intro.mp4" type="video/mp4" />
         Your browser does not support the video tag.

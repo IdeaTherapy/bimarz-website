@@ -21,6 +21,7 @@ build:
 		--build-arg DATABASE_URL=${DATABASE_URL} \
 		--build-arg SECRET_KEY=${SECRET_KEY} \
 		--build-arg NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL} \
+		--build-arg NODE_ENV=production \
 		-t ${IMAGE_NAME} .
 
 # Tag the Docker image
@@ -33,7 +34,7 @@ push: tag
 
 # Deploy to production
 deploy:
-	ssh ${REMOTE_HOST} "cd ${REMOTE_DIR} && docker compose pull && docker compose up -d"
+	ssh ${REMOTE_HOST} "cd ${REMOTE_DIR} && docker compose pull && docker compose down && docker compose up -d"
 
 # Full production deployment pipeline
 production: build tag push deploy

@@ -24,7 +24,7 @@ interface PaymentFormData {
 }
 
 const ManualPay = () => {
-  const [amount, setAmount] = useState("10,000");
+  const [amount, setAmount] = useState("5,000,000");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState<PaymentFormData>({
     firstName: "",
@@ -40,19 +40,19 @@ const ManualPay = () => {
     () => ({
       library: {
         name: "تجهیز کتابخانه‌های مدارس",
-        amount: 50000,
+        amount: 64000000,
         formatText: (count: number) =>
           `${formatPersianNumber(count)} کتابخانه رو تجهیز کنیم.`,
       },
       subscription: {
         name: "آبونمان کتاب",
-        amount: 20000,
+        amount: 30000000,
         formatText: (count: number) =>
-          `${formatPersianNumber(count)} کتاب برای اعضای آبونمان بفرستیم.`,
+          `برای ${formatPersianNumber(count * 10)} کودک و نوجوان، یکسال کتاب بفرستیم.`,
       },
       facilitator: {
         name: "آموزش تسهیلگر کتابخوانی",
-        amount: 30000,
+        amount: 40000000,
         formatText: (count: number) =>
           `${formatPersianNumber(count)} تسهیلگر کتابخوانی رو آموزش بدیم.`,
       },
@@ -62,13 +62,13 @@ const ManualPay = () => {
 
   const handleIncrement = () => {
     const currentAmount = parseInt(amount.replace(/,/g, ""));
-    setAmount(new Intl.NumberFormat().format(currentAmount + 10000));
+    setAmount(new Intl.NumberFormat().format(currentAmount + 5000000));
   };
 
   const handleDecrement = () => {
     const currentAmount = parseInt(amount.replace(/,/g, ""));
     if (currentAmount > 10000) {
-      setAmount(new Intl.NumberFormat().format(currentAmount - 10000));
+      setAmount(new Intl.NumberFormat().format(currentAmount - 5000000));
     }
   };
 

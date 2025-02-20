@@ -102,7 +102,7 @@ function Navbar() {
               role="navigation"
               aria-label="Social media links"
             >
-              <Image src="/logo.jpg" alt="logo" width={40} height={40} />
+              <Image src="/logo.jpeg" alt="logo" width={40} height={40} />
               {/* <Link
                 href={INSTAGRAM_URL}
                 className="social-icon hover:text-[var(--primary-700)] transition-colors duration-200"

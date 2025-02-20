@@ -32,14 +32,26 @@ ARG DATABASE_URL
 ARG SECRET_KEY
 ARG NEXT_PUBLIC_SERVER_URL
 
+# Add cache busting mechanism
+ARG NODE_ENV
 
 ENV DATABASE_URL=$DATABASE_URL
 ENV SECRET_KEY=$SECRET_KEY
 ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL
 
-# Build application
-ENV NEXT_TELEMETRY_DISABLED=1
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files first
+COPY pnpm-lock.yaml package.json ./
+RUN pnpm install --frozen-lockfile
+
+# Copy all other files
+COPY . .
+
+# Build with cache busting
 RUN pnpm build
+
 
 # Stage 3: Production image
 FROM node:20-alpine AS runner

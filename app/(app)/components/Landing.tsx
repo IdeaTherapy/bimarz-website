@@ -3,7 +3,7 @@ import Introduction from "./Introduction";
 
 function Landing() {
   return (
-    <div className="relative h-[calc(100vh-var(--navbar-height))] w-screen overflow-hidden">
+    <div className="relative md:h-[calc(100vh-var(--navbar-height))] w-screen overflow-hidden">
       {/* Background waves */}
       <div className="absolute inset-0">
         <div className="wave-container">

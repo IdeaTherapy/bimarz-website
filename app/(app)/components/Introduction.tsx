@@ -2,12 +2,12 @@ import SignButton from "./SignButton";
 
 function Introduction() {
   return (
-    <div className="flex flex-col items-start justify-center w-full max-w-2xl gap-10 px-4">
+    <div className="flex flex-col items-start justify-center w-full max-w-2xl gap-0 md:gap-10 px-4">
       <h1 className="text-2xl md:text-4xl font-bold text-right mb-2 mt-24 md:mt-10">
         برای گسترش عادلانه جریان آگاهی
       </h1>
       <div className="flex flex-col justify-center items-center ml-5">
-        <p className="text-md md:text-lg text-gray-700 leading-8 text-justify">
+        <p className="text-md md:text-lg text-gray-700 leading-8 text-justify text-sm">
           باشگاه کتابخوانی ازتا همچنان تلاش می‌کند کتابخوانی را در گوشه و کنار
           این مرز و بوم زنده و پایا نگاه دارد. در این میان بسیاری هستند که
           علیرغم ذوق و اشتیاق به کتابخوانی، دسترسی به کتاب‌های خوب ندارند.

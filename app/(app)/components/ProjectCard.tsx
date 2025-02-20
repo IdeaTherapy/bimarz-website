@@ -3,17 +3,19 @@
 import Image from "next/image";
 import { FC, useState } from "react";
 import DonationDialog from "./DonationDialog";
-
+import { Price } from "../const";
 interface ProjectCardProps {
   title: string;
   imageUrl: string;
   description: string;
+  price: Price;
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({
   title,
   imageUrl,
   description,
+  price,
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -53,6 +55,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         projectTitle={title}
         projectImage={imageUrl}
         description={description}
+        price={price}
       />
     </>
   );

@@ -10,13 +10,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { FC, useState } from "react";
 import Image from "next/image";
-
+import { Price } from "../const";
 interface DonationDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   projectTitle: string;
   projectImage: string;
   description: string;
+  price: Price;
 }
 interface PaymentFormData {
   firstName: string;
@@ -30,10 +31,11 @@ const DonationDialog: FC<DonationDialogProps> = ({
   projectTitle,
   projectImage,
   description,
+  price,
 }) => {
-  const STEP_AMOUNT = 20000;
-  const MIN_AMOUNT = 20000;
-  const MAX_AMOUNT = 100000000;
+  const MIN_AMOUNT = price.MIN;
+  const MAX_AMOUNT = price.MAX;
+  const STEP_AMOUNT = price.MIN;
   const [formData, setFormData] = useState<PaymentFormData>({
     firstName: "",
     lastName: "",
@@ -46,21 +48,24 @@ const DonationDialog: FC<DonationDialogProps> = ({
   const [amount, setAmount] = useState(MIN_AMOUNT);
 
   const incrementAmount = () => {
-    setAmount((prev) => Math.min(MAX_AMOUNT, prev + STEP_AMOUNT));
+    const currentAmount = parseInt(amount.replace(/,/g, ""));
+    if (currentAmount < parseInt(MAX_AMOUNT.replace(/,/g, ""))) {
+      setAmount(
+        new Intl.NumberFormat().format(
+          currentAmount + parseInt(STEP_AMOUNT.replace(/,/g, ""))
+        )
+      );
+    }
   };
 
   const decrementAmount = () => {
-    setAmount((prev) => Math.max(MIN_AMOUNT, prev - STEP_AMOUNT));
-  };
-
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newAmount = Number(e.target.value);
-    if (newAmount < MIN_AMOUNT) {
-      setAmount(MIN_AMOUNT);
-    } else if (newAmount > MAX_AMOUNT) {
-      setAmount(MAX_AMOUNT);
-    } else {
-      setAmount(newAmount);
+    const currentAmount = parseInt(amount.replace(/,/g, ""));
+    if (currentAmount > parseInt(MIN_AMOUNT.replace(/,/g, ""))) {
+      setAmount(
+        new Intl.NumberFormat().format(
+          currentAmount - parseInt(STEP_AMOUNT.replace(/,/g, ""))
+        )
+      );
     }
   };
 
@@ -159,27 +164,22 @@ const DonationDialog: FC<DonationDialogProps> = ({
               <div className="flex items-center gap-4">
                 <div className="flex-1 flex items-center">
                   <button
-                    onClick={incrementAmount}
+                    onClick={decrementAmount}
                     className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
-                    disabled={amount >= MAX_AMOUNT}
                   >
-                    +
+                    -
                   </button>
                   <Input
                     value={amount}
-                    onChange={handleAmountChange}
-                    type="number"
-                    min={MIN_AMOUNT}
-                    max={MAX_AMOUNT}
-                    step={STEP_AMOUNT}
+                    onChange={(e) => setAmount(e.target.value)}
+                    type="text"
                     className="text-center border-none text-lg mx-auto bg-white w-2/3"
                   />
                   <button
-                    onClick={decrementAmount}
+                    onClick={incrementAmount}
                     className="w-12 h-12 rounded-full bg-[var(--secondary-400)] text-white text-2xl flex items-center justify-center hover:bg-[var(--secondary-600)] transition-colors"
-                    disabled={amount <= MIN_AMOUNT}
                   >
-                    -
+                    +
                   </button>
                 </div>
                 <span className="text-sm">تومان</span>
