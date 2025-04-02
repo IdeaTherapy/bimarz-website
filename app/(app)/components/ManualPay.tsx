@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatPersianNumber } from "../utils/numbers";
+import { initiatePayment } from "../utils/utils";
 interface ProjectInfo {
   name: string;
   amount: number;
@@ -48,7 +49,9 @@ const ManualPay = () => {
         name: "آبونمان کتاب",
         amount: 30000000,
         formatText: (count: number) =>
-          `برای ${formatPersianNumber(count * 10)} کودک و نوجوان، یکسال کتاب بفرستیم.`,
+          `برای ${formatPersianNumber(
+            count * 10
+          )} کودک و نوجوان، یکسال کتاب بفرستیم.`,
       },
       facilitator: {
         name: "آموزش تسهیلگر کتابخوانی",
@@ -104,10 +107,20 @@ const ManualPay = () => {
     }
   };
 
-  const handlePaymentSubmit = () => {
-    // Here you would handle the payment submission
-    console.log("Payment submitted:", { amount, ...formData });
-    setIsDialogOpen(false);
+  const handlePaymentSubmit = async () => {
+    try {
+      const paymentUrl = await initiatePayment({
+        amount: parseInt(amount.replace(/,/g, "")),
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phoneNumber: formData.phoneNumber,
+      });
+      if (paymentUrl) {
+        window.open(paymentUrl, "_blank");
+      }
+    } catch (error) {
+      console.error("Payment initiation failed:", error);
+    }
   };
 
   const calculateEquivalents = useMemo(() => {

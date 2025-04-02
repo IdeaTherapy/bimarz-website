@@ -8,6 +8,8 @@ import { Tags } from "@/collections/Tags";
 import { en } from "@payloadcms/translations/languages/en";
 import { fa } from "@payloadcms/translations/languages/fa";
 import { Posts } from "@/collections/Posts";
+import { Supporters } from "@/collections/Supporters";
+import { Payments } from "@/collections/Payments";
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
@@ -34,7 +36,7 @@ export default buildConfig({
     },
   },
   // Define and configure your collections in this array
-  collections: [Users, Media, Tags, Posts],
+  collections: [Users, Media, Tags, Posts, Supporters, Payments],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || "",

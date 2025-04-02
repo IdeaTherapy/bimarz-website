@@ -5,6 +5,8 @@ import "./styles/waves.css";
 import Navbar from "./components/navigation";
 import Footer from "./components/footer";
 import Script from "next/script";
+import { Toaster } from "sonner";
+
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -45,6 +47,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   );

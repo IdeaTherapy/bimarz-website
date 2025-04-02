@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { FC, useState } from "react";
 import Image from "next/image";
 import { Price } from "../const";
+import { initiatePayment } from "../utils/utils";
+
 interface DonationDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -97,6 +99,22 @@ const DonationDialog: FC<DonationDialogProps> = ({
     formData.phoneNumber &&
     validatePhoneNumber(formData.phoneNumber) &&
     !formErrors.phoneNumber;
+
+  const submitPayment = async () => {
+    try {
+      const paymentUrl = await initiatePayment({
+        amount: parseInt(amount.replace(/,/g, "")),
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phoneNumber: formData.phoneNumber,
+      });
+      if (paymentUrl) {
+        window.open(paymentUrl, "_blank");
+      }
+    } catch (error) {
+      console.error("Payment initiation failed:", error);
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -192,6 +210,7 @@ const DonationDialog: FC<DonationDialogProps> = ({
                     ? "hover:bg-[var(--secondary-600)]"
                     : "opacity-50 cursor-not-allowed"
                 }`}
+                onClick={() => submitPayment()}
               >
                 پرداخت
               </button>
