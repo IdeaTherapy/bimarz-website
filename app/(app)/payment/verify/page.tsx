@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { verifyZarinpalPayment } from "../../utils/zarinpal";
+import { Suspense } from "react";
 import { toast } from "sonner";
 
 export default function PaymentVerification() {
@@ -60,18 +61,20 @@ export default function PaymentVerification() {
   }, [router, searchParams]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[50vh] p-4">
-      {verifying ? (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">در حال بررسی پرداخت...</h1>
-          <p>لطفا صبر کنید، در حال بررسی وضعیت پرداخت شما هستیم.</p>
-        </div>
-      ) : (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">انتقال به صفحه اصلی</h1>
-          <p>در حال انتقال به صفحه اصلی...</p>
-        </div>
-      )}
-    </div>
+    <Suspense>
+      <div className="flex flex-col items-center justify-center min-h-[50vh] p-4">
+        {verifying ? (
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">در حال بررسی پرداخت...</h1>
+            <p>لطفا صبر کنید، در حال بررسی وضعیت پرداخت شما هستیم.</p>
+          </div>
+        ) : (
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">انتقال به صفحه اصلی</h1>
+            <p>در حال انتقال به صفحه اصلی...</p>
+          </div>
+        )}
+      </div>
+    </Suspense>
   );
 }
